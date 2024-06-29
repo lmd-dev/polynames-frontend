@@ -8,7 +8,7 @@ Clone or download files from this repository
 
 ### Configuration
 
-Create ```/config/config.js``` from ```/config/config.default.js``` and update the setting values.
+Create ```/js/config/config.js``` from ```/js/config/config.default.js``` and update the setting values.
 
 ## Run
 
