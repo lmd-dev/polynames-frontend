@@ -1,0 +1,25 @@
+input, select {
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid var(--primary);
+    outline: none;
+}
+
+button {
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: none;
+    background-color: var(--primary);
+    color: var(--primary-text);
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 0 10px var(--primary-shadow);
+}
+
+button:hover {
+    background-color: var(--highlighted-primary);
+}

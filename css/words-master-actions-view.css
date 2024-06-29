@@ -1,0 +1,18 @@
+.words-master-actions-view {
+    display: flex;
+}
+
+.words-master-actions-view input {
+    margin-right: 10px;
+}
+
+.words-master-actions-view input[type="number"] {
+    width: 50px
+}
+
+.words-master-actions-view #waiting-message {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: var(--game-status-secondary-background);
+    font-style: italic;
+}

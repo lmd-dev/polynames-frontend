@@ -1,0 +1,42 @@
+:root {
+
+    --primary-background-color: #f3ab24;
+    --secondary-background-color: #962640;
+
+    --primary-text: #eee;
+    --secondary-text: #d9d63b;
+
+    --primary: hsl(330.81deg 59.89% 37.16%);
+    --highlighted-primary: hsl(330.81deg 59.89% 43.16%);
+
+    --header-primary-background: rgba(0, 0,0, 0.5);
+    --header-secondary-background: rgba(0, 0, 0, 0.3);
+    --header-highlighted-secondary-background: rgba(0, 0, 0, 0.2);
+    --header-tertiary-background: #3c9754;
+
+    --footer-background: rgba(0, 0, 0, 0.2);
+
+    --form-background: rgba(255, 255, 255, 0.3);
+    --form-highlighted-background: rgba(255, 255, 255, 0.35);
+
+    --rounds-background: rgba(0, 0, 0, 0.1);
+    --rounds-header: #57132aa9; 
+
+    --card-default: #ac791b;
+
+    --card-blue: #3a5f95;
+    --card-cover-blue: #2e4b77;
+
+    --card-grey: #aba18f;
+    --card-cover-grey: #817b6d;
+
+    --card-black: #252525;
+    --card-cover-black: #1b1b1b;
+
+    --card-word-background: rgba(39, 39, 39, 0.4);
+
+    --game-status-primary-background: rgba(0, 0, 0, 0.5);
+    --game-status-secondary-background: #1a070d8f;
+
+    --primary-shadow: rgba(0, 0, 0, 0.5);
+}

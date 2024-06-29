@@ -1,0 +1,102 @@
+.cards-view {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    width: max-content;
+}
+
+.cards-view .card {
+    position: relative;
+    display: flex;
+    width: 170px;
+    height: 110px;
+    overflow: hidden;
+
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 10px;
+
+    box-shadow: 0 0 8px var(--primary-shadow);
+
+    background-color: var(--card-default);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(../img/lmd-mill-2.png);
+
+    color: var(--primary-text);
+
+    cursor: pointer;
+}
+
+.cards-view .card.revealed:after {
+    z-index: 10;
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image: url(../img/lmd-mill-1.png);
+    background-repeat: no-repeat;
+    background-position: center;
+
+    box-shadow: 0 0 8px var(--primary-shadow);
+    transition: margin-top 0.5s;
+}
+
+.cards-view .card.blue.revealed:after {
+    background-color: var(--card-cover-blue);
+}
+
+.cards-view .card.grey.revealed:after {
+    background-color: var(--card-cover-grey);
+}
+
+.cards-view .card.black.revealed:after {
+    background-color: var(--card-cover-black);
+}
+
+.cards-view .card.revealed:hover {
+    box-shadow: 0 0 8px var(--primary-shadow);
+    margin-top: 0;
+    margin-left: 0;
+}
+
+.cards-view .card.revealed:hover:after {
+    margin-top: -40px;
+}
+
+.cards-view .card:hover {
+    box-shadow: 0 0 13px var(--primary-shadow);
+    margin-top: -1px;
+    margin-left: -1px;
+}
+
+.cards-view .card.blue {
+    background-color: var(--card-blue);
+}
+
+.cards-view .card.grey {
+    background-color: var(--card-grey);
+}
+
+.cards-view .card.black {
+    background-color: var(--card-black);
+}
+
+.cards-view .card-word {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    right: 5px;
+    font-size: 0.8em;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 5px;
+    box-sizing: border-box;
+    background-color: var(--card-word-background);
+    border-radius: 7px;
+}
