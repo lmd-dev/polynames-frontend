@@ -99,7 +99,7 @@ export class GameView extends View
 
         statusDiv.innerHTML = /*html*/`
             <div>
-                <h1>${GameStatus.LOST ? "Défaite" : "Victoire"}</h1>
+                <h1>${gameStatus === GameStatus.LOST ? "Défaite" : "Victoire"}</h1>
                 <button>Fermer</button>
             </div>
         `
