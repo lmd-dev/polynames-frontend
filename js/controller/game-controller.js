@@ -48,7 +48,7 @@ class GameController extends EventTarget
         {
             storageService.saveGameData({
                 gameCode: this.#game.code,
-                playerId: this.#game.players.localPlayer.id
+                playerUId: this.#game.players.localPlayer.uid
             });
         }
     }
@@ -60,7 +60,7 @@ class GameController extends EventTarget
         if (data)
         {
             const game = await gameService.find(data.gameCode);
-            const player = await playersService.find(data.playerId);
+            const player = await playersService.find(data.playerUId);
 
             if (game === null || player === null)
             {
@@ -110,7 +110,7 @@ class GameController extends EventTarget
     {
         if (this.#game)
         {
-            this.#game.setCards(await cardsService.findAll(this.#game.code, this.#game.players.localPlayer?.id));
+            this.#game.setCards(await cardsService.findAll(this.#game.code, this.#game.players.localPlayer?.uid));
 
             this.#notify("cards-update");
         }
@@ -162,11 +162,11 @@ class GameController extends EventTarget
      */
     async exitGame()
     {
-        await playersService.leaveGame(this.#game?.code, this.#game.players.localPlayer?.id ?? 0);
-        
+        await playersService.leaveGame(this.#game?.code, this.#game.players.localPlayer?.uid ?? 0);
+
         this.#game = null;
-        storageService.clearGameData(); 
-    
+        storageService.clearGameData();
+
         this.#notify("update");
     }
 
@@ -177,7 +177,10 @@ class GameController extends EventTarget
     async chooseRole(roleId)
     {
         if (this.#game)
-            await roleService.chooseRole(this.#game.players.localPlayer?.id, roleId);
+        {
+            await roleService.chooseRole(this.#game.players.localPlayer?.uid, roleId);
+        }
+
     }
 
     /**
@@ -189,7 +192,7 @@ class GameController extends EventTarget
     {
         if (this.#game?.canLocalPlayerSendClue())
         {
-            await gameService.sendClue(this.#game.code, this.#game.players.localPlayer?.id, clue, nbWords);
+            await gameService.sendClue(this.#game.code, this.#game.players.localPlayer?.uid, clue, nbWords);
         }
     }
 
@@ -201,7 +204,7 @@ class GameController extends EventTarget
     {
         if (this.#game?.canLocalPlayerRevealCard())
         {
-            await gameService.revealCard(this.#game.code, this.#game.players.localPlayer?.id, cardId);
+            await gameService.revealCard(this.#game.code, this.#game.players.localPlayer?.uid, cardId);
         }
     }
 
@@ -212,7 +215,7 @@ class GameController extends EventTarget
     async finishRound()
     {
         if (this.#game?.canLocalPlayerRevealCard())
-            await gameService.finishRound(this.#game.code, this.#game.players.localPlayer?.id);
+            await gameService.finishRound(this.#game.code, this.#game.players.localPlayer?.uid);
     }
 
     /**
@@ -225,8 +228,6 @@ class GameController extends EventTarget
         {
             this.#game.players.setPlayers(players.map((playerData) => { return new Player(playerData); }));
             this.#notify("update");
-
-            console.log(this.#game.players);
 
             if (this.#game.players.localPlayer?.hasRole())
             {
@@ -256,8 +257,6 @@ class GameController extends EventTarget
      */
     #onRevealCard(cardData)
     {
-        console.log(cardData);
-
         if (this.#game === null || cardData === null)
             return;
 

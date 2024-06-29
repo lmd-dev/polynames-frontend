@@ -3,9 +3,15 @@ import { Card } from "../models/card.js";
 
 class CardsService
 {
-    async findAll(gameCode, playerId)
+    /**
+     * 
+     * @param {string} gameCode 
+     * @param {string} playerUId 
+     * @returns { Card[] } 
+     */
+    async findAll(gameCode, playerUId)
     {
-        const response = await fetch(`${ config.baseUrl }/games/${ gameCode }/cards/${playerId}`);
+        const response = await fetch(`${ config.baseUrl }/games/${ gameCode }/cards/${playerUId}`);
 
         if (response.status === 200)
         {

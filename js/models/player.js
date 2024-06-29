@@ -2,7 +2,8 @@ import { Role } from "./role.js";
 
 /**
  * @typedef { Object } PlayerData
- * @property { number } id
+ * @property { id } id
+ * @property { string } uid
  * @property { string } name
  * @property { RoleData | null } role
  */
@@ -13,6 +14,10 @@ export class Player
     /** @type { number } */
     #id
     get id() { return this.#id; }
+
+    /** @type { string } */
+    #uid
+    get uid() { return this.#uid; }
 
     /** @type { string } */
     #name
@@ -28,6 +33,7 @@ export class Player
     constructor(data)
     {
         this.#id = 0;
+        this.#uid = "";
         this.#name = "";
         this.#role = null;
 
@@ -42,6 +48,7 @@ export class Player
     fromData(data)
     {
         this.#id = data.id ?? 0;
+        this.#uid = data.uid ?? "";
         this.#name = data.name ?? "";
         this.#role = data.role ? new Role(data.role) : null;
     }

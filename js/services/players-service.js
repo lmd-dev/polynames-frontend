@@ -5,12 +5,12 @@ class PlayersService
 {
     /**
      * Loads player from its id
-     * @param {number} playerId Id of the player to load 
+     * @param {string} playerUId UId of the player to load 
      * @returns {Promise<Player | null>}
      */
-    async find(playerId)
+    async find(playerUId)
     {
-        const response = await fetch(`${config.baseUrl}/players/${playerId}`);
+        const response = await fetch(`${config.baseUrl}/players/${playerUId}`);
 
         if (response.status === 200)
         {
@@ -39,9 +39,15 @@ class PlayersService
         return [];
     }
 
-    async leaveGame(gameCode, playerId)
+    /**
+     * 
+     * @param {string} gameCode 
+     * @param {string} playerUId 
+     * @returns 
+     */
+    async leaveGame(gameCode, playerUId)
     {
-        const response = await fetch(`${config.baseUrl}/games/${gameCode}/players/${playerId}`, { method: "delete" });
+        const response = await fetch(`${config.baseUrl}/games/${gameCode}/players/${playerUId}`, { method: "delete" });
 
         if (response.status === 200)
         {

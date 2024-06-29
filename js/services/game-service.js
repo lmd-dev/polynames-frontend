@@ -33,12 +33,14 @@ class GameService
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ name: playerName })
         });
+
         if (response.status === 200)
         {
-            const playerId = parseInt(await response.text());
+            const playerData = await response.json();
 
             return new Player({
-                id: playerId,
+                id: playerData.id,
+                uid: playerData.uid,
                 name: playerName,
                 role: null
             });
@@ -61,12 +63,12 @@ class GameService
 
     /**
      * 
-     * @param {number} playerId
+     * @param {string} playerUId
      * @returns { Promise<Card[]> } 
      */
-    async loadCards(playerId)
+    async loadCards(playerUId)
     {
-        const response = await fetch(`${ config.baseUrl }/cards/${ playerId }`);
+        const response = await fetch(`${ config.baseUrl }/cards/${ playerUId }`);
 
         if (response.status === 200)
         {
@@ -76,9 +78,17 @@ class GameService
         return [];
     }
 
-    async sendClue(gameCode, playerId, clue, nbWords)
+    /**
+     * 
+     * @param {string} gameCode 
+     * @param {string} playerUId 
+     * @param {string} clue 
+     * @param {number} nbWords 
+     * @returns 
+     */
+    async sendClue(gameCode, playerUId, clue, nbWords)
     {
-        const response = await fetch(`${ config.baseUrl }/games/${gameCode}/clues/${ playerId }`, {
+        const response = await fetch(`${ config.baseUrl }/games/${gameCode}/clues/${ playerUId }`, {
             method: "post",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ clue: clue, nbWords: nbWords })
@@ -90,9 +100,16 @@ class GameService
         return false;
     }
 
-    async revealCard(gameCode, playerId, cardId)
+    /**
+     * 
+     * @param {string} gameCode 
+     * @param {string} playerUId 
+     * @param {number} cardId 
+     * @returns 
+     */
+    async revealCard(gameCode, playerUId, cardId)
     {
-        const response = await fetch(`${ config.baseUrl }/games/${gameCode}/cards/${ playerId }/${ cardId }`, {
+        const response = await fetch(`${ config.baseUrl }/games/${gameCode}/cards/${ playerUId }/${ cardId }`, {
             method: "post"
         });
 
@@ -102,9 +119,15 @@ class GameService
         return false;
     }
 
-    async finishRound(gameCode, playerId)
+    /**
+     * 
+     * @param {string} gameCode 
+     * @param {string} playerUId 
+     * @returns 
+     */
+    async finishRound(gameCode, playerUId)
     {
-        const response = await fetch(`${ config.baseUrl }/games/${gameCode}/rounds/${ playerId }`, {
+        const response = await fetch(`${ config.baseUrl }/games/${gameCode}/rounds/${ playerUId }`, {
             method: "post"
         });
 

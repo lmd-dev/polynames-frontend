@@ -30,13 +30,13 @@ class RoleService
     /**
      * 
      * @param {string} gameCode 
-     * @param {number} playerId 
+     * @param {string} playerUId 
      * @param {number} roleId 
      * @returns { Promise<boolean> }
      */
-    async chooseRole(playerId, roleId)
+    async chooseRole(playerUId, roleId)
     {
-        const response = await fetch(`${ config.baseUrl }/roles/${ playerId }`, {
+        const response = await fetch(`${ config.baseUrl }/roles/${ playerUId }`, {
             method: "post",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ id: roleId })
@@ -50,9 +50,14 @@ class RoleService
         return false;
     }
 
-    async findForPlayer(playerId)
+    /**
+     * 
+     * @param {string} playerUId 
+     * @returns { Role | null }
+     */
+    async findForPlayer(playerUId)
     {
-        const response = await fetch(`${ config.baseUrl }/roles/${ playerId }`);
+        const response = await fetch(`${ config.baseUrl }/roles/${ playerUId }`);
 
         if (response.status === 200)
         {
