@@ -6,3 +6,5 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 window.addEventListener("resize", () => { screenService.updateApplicationHeight(); });
+
+screenService.updateApplicationHeight();
