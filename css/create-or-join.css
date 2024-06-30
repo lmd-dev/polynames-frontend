@@ -62,3 +62,26 @@
     text-transform: uppercase;
     margin-bottom: 10px;
 }
+
+@media screen and (max-width: 800px)
+{
+    .create-or-join-view h1 {
+        font-size: 3em;
+    }
+    
+    .create-or-join-view .view-content {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    
+    }
+    
+    .create-or-join-view .view-content > form {
+        width: 90%;
+    }
+    
+    .create-or-join-view .view-content > form:first-child {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+}

@@ -20,3 +20,31 @@
     width: 100%;
     height: 100%;
 }
+
+@media screen and (max-width: 800px) {
+    .play-view {
+        flex-direction: column-reverse;
+        overflow: hidden;
+    }
+
+    .play-view .left-part {
+        flex-shrink: 0;
+        width: 100%;
+        height: 150px;
+        padding: 10px;
+    }
+
+    .play-view .center-part {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .play-view .center-part .cards-view {
+        overflow-y: auto;
+        height: 100%;
+    }
+}

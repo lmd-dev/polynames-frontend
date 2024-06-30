@@ -5,7 +5,7 @@
     height: 100%;
     background-color: var(--rounds-background);
     border-radius: 10px;
-    overflow: hidden;
+    overflow: auto;
 }
 
 .rounds-view .round {
@@ -56,4 +56,10 @@
 
 .rounds-view .round .round-word.black::before {
     background-color: var(--card-black);
+}
+
+@media screen and (max-width: 800px) {
+    .rounds-view {
+        flex-direction:column-reverse;
+    }
 }
